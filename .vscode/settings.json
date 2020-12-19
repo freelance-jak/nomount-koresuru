@@ -5,7 +5,7 @@
     "source.fixAll.eslint": true
   },
   "eslint.validate": ["json", "javascript", "javascriptreact", "typescript", "typescriptreact"],
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "[css]": {
     "editor.formatOnSave": true
   },
