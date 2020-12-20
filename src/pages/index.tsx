@@ -13,7 +13,7 @@ const InputField = (props: any) => {
     <div className="flex justify-center w-72 m-auto">
       <span className={["w-12 h-12 text-white shadow p-2 rounded m-1 inline-block", props.color].join(" ")}></span>
       <input
-        onChange={() => {
+        onChange={(event: any) => {
           const newData = [...props.data];
           newData[props.id] = { item: event.target.value, time: props.data[props.id].time };
           props.setData(newData);
@@ -22,7 +22,7 @@ const InputField = (props: any) => {
         placeholder="項目を入れる"
       />
       <input
-        onChange={() => {
+        onChange={(event: any) => {
           const newData = [...props.data];
           newData[props.id] = { item: props.data[props.id].item, time: event.target.value };
           props.setData(newData);
@@ -144,7 +144,7 @@ const App = () => {
           alert("nothing");
           return;
         }
-        result.src = url;
+        result.setAttribute("src", url);
         const share = document.getElementById("share");
         if (!share) {
           alert("nothing");
@@ -165,8 +165,12 @@ const App = () => {
 
   return (
     <div>
-      <button onClick={screenshot}>Screenshot</button>
-      <button onClick={screenshot2}>Screenshot2</button>
+      <button className="p-2 bg-red-300" onClick={screenshot}>
+        Screenshot
+      </button>
+      <button className="p-2 bg-blue-300" onClick={screenshot2}>
+        Screenshot2
+      </button>
       <div className="w-80 shadow-md m-auto my-10 ">
         <h1 className="bg-red-400 text-white text-2xl text-center p-3">コレスル</h1>
         <div id="capture">
