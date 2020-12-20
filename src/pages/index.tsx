@@ -3,8 +3,8 @@
 // import { ESTALE } from "constants";
 import html2canvas from "html2canvas";
 import { useState } from "react";
-import Chart from "react-google-charts";
 import { Layout } from "src/components/layout";
+import { PieChart } from "src/components/piechart";
 
 // (window as any).html2canvas = html2canvas;
 
@@ -24,7 +24,7 @@ const InputField = (props: any) => {
       <input
         onChange={(event: any) => {
           const newData = [...props.data];
-          newData[props.id] = { item: props.data[props.id].item, time: event.target.value };
+          newData[props.id] = { item: props.data[props.id].item, time: Number(event.target.value) };
           props.setData(newData);
         }}
         className="w-10 bg-blue-200 shadow-inner rounded p-2 m-1 "
@@ -51,10 +51,10 @@ const App = () => {
     // { item: "", time: "" },
     // { item: "", time: "" },
     // { item: "", time: "" },
-    { item: "REACT", time: "7" },
-    { item: "ブログ書く", time: "4" },
-    { item: "その他", time: "7" },
-    { item: "睡眠", time: "8" },
+    { item: "REACT", time: 7 },
+    { item: "ブログ書く", time: 4 },
+    { item: "その他", time: 7 },
+    { item: "睡眠", time: 8 },
   ]);
 
   const screenshot = () => {
@@ -175,32 +175,7 @@ const App = () => {
       <div className="w-80 shadow-md m-auto my-10 ">
         <h1 className="bg-red-400 text-white text-2xl text-center p-3">コレスル</h1>
         <div id="capture">
-          <Chart
-            width={"320px"}
-            height={"250px"}
-            chartType="PieChart"
-            loader={<div>Loading Chart</div>}
-            data={[
-              ["Task", "Hours per Day"],
-              ["REACT", 11],
-              ["ブログ", 2],
-              ["その他", 3],
-              ["睡眠", 7],
-            ]}
-            options={{
-              // title: "My Daily Activities",
-              chartArea: { top: "0", left: "5%", width: "90%", height: "100%" },
-              pieHole: 0.6,
-              legend: {
-                position: "right",
-                alignment: "center",
-                textStyle: { color: "black", fontSize: "16" },
-              },
-              pieSliceText: "none",
-              pieStartAngle: "0",
-            }}
-            rootProps={{ "data-testid": "1" }}
-          />
+          <PieChart timeTables={data} />
         </div>
         <Viewdata data1={data[0].item} data2={data[0].time} />
         <Viewdata data1={data[1].item} data2={data[1].time} />
