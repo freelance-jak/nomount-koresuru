@@ -38,7 +38,7 @@ export const PieChart = (props: any) => {
                 </Surface>
                 <span>{entry.item}</span>
                 <div className="flex items-end">
-                  <span className="align-bottom ml-2 text-xs text-gray-500	">{entry.time}</span>
+                  <span className="align-bottom ml-2 text-xs text-gray-500	">{entry.time}H</span>
                 </div>
               </div>
             </>
