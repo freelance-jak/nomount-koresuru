@@ -1,6 +1,13 @@
 import { Layout } from "src/components/layout";
+import { PieChart } from "src/components/piechart";
 
 const Home = () => {
+  const data = [
+    { item: "React", time: 2 },
+    { item: "Blog構築", time: 2 },
+    { item: "睡眠", time: 6 },
+    { item: "その他", time: 8 },
+  ];
   return (
     <Layout>
       <button
@@ -11,6 +18,7 @@ const Home = () => {
       >
         Button
       </button>
+      <PieChart timeTables={data} />
     </Layout>
   );
 };
