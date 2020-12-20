@@ -71,7 +71,7 @@ const App = () => {
         alert("nothing");
         return;
       }
-      result.src = imgData;
+      result.setAttribute("src", imgData);
       // console.log("done");
     });
   };
@@ -152,7 +152,8 @@ const App = () => {
         }
         // https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Ftoretama.jp%2Fsns-twitter-share.html&ref_src=twsrc%5Etfw&text=Twitter%20で「シェア（共有）」してもらうボタンを設置する方法&tw_p=tweetbutton&url=http%3A%2F%2Ftoretama.jp%2Fsns-twitter-share.html
         // <a href="http://twitter.com/share?url=[シェアするURL]&text=[ツイート内テキスト]&via=[ツイート内に含むユーザ名]&related=[ツイート後に表示されるユーザー]&hashtags=[ハッシュタグ]" target="_blank">ツイート</a>
-        share.href = `http://twitter.com/share?url=${url}&text=今日のコレスル&hashtags=コレスル`;
+        share.setAttribute("href", `http://twitter.com/share?url=${url}&text=今日のコレスル&hashtags=コレスル`);
+        // share.href = `http://twitter.com/share?url=${url}&text=今日のコレスル&hashtags=コレスル`;
         // gallery.appendChild(img);
       }
     };
@@ -214,7 +215,12 @@ const App = () => {
         </div>
 
         {/* <div id="share"></div> */}
-        <a id="share" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">
+
+        <a
+          className="p-2 bg-green-200 inline-block"
+          id="share"
+          href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw"
+        >
           Share
         </a>
       </div>
