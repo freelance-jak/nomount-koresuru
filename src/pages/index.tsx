@@ -146,7 +146,7 @@ const Home = () => {
   return (
     <Layout>
       <div>
-        {/* TODO コンポーネント化 */}
+        {/* コレスル！! コンポーネント化  */}
         <button className="p-2 bg-red-300" onClick={screenshot}>
           Screenshot
         </button>
@@ -158,11 +158,13 @@ const Home = () => {
           <div id="capture">
             <PieChart timeTables={timeTables} />
           </div>
+          {/* コレスル！！（map使って書いてみてください〜/Viewdataコンポーネントは使わない方向でおなしゃす🙏） */}
           {/* <Viewdata data1={data[0].item} data2={data[0].time} />
         <Viewdata data1={data[1].item} data2={data[1].time} />
         <Viewdata data1={data[2].item} data2={data[2].time} />
         <Viewdata data1={data[3].item} data2={data[3].time} /> */}
 
+          {/* コレスル！！コード読み解きつつ模写してみてください〜💪 */}
           <div className="p-3 bg-gray-200">
             {timeTables.map((obj, idx) => (
               <div key={idx} className="flex justify-center w-72 m-auto">
