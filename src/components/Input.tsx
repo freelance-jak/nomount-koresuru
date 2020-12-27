@@ -8,6 +8,6 @@ type Props = {
 };
 
 export const Input = (props: Props) => {
-  const { className = "", placeholder = "", onChange } = props;
-  return <input className={className} placeholder={placeholder} onChange={onChange} />;
+  const { className, value, placeholder, onChange } = props;
+  return <input className={className} value={value} placeholder={placeholder} onChange={onChange} />;
 };

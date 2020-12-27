@@ -6,9 +6,9 @@ import { Layout } from "src/components/layout";
 import { PieChart } from "src/components/piechart";
 
 type timeTable = {
-  item: string;
-  time: number;
-  color: string;
+  item?: string;
+  time?: number;
+  color?: string;
 };
 
 const Home = () => {
