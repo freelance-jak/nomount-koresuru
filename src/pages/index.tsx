@@ -1,60 +1,22 @@
-// import { CloudinaryContext } from "cloudinary-react";
-// import { Image } from "cloudinary-react";
-// import { ESTALE } from "constants";
 import html2canvas from "html2canvas";
 import { useState } from "react";
+import { Input } from "src/components/Input";
+import { Button } from "src/components/Button";
 import { Layout } from "src/components/layout";
 import { PieChart } from "src/components/piechart";
 
-// (window as any).html2canvas = html2canvas;
-
-const InputField = (props: any) => {
-  return (
-    <div className="flex justify-center w-72 m-auto">
-      <span className={["w-12 h-12 text-white shadow p-2 rounded m-1 inline-block", props.color].join(" ")}></span>
-      <input
-        onChange={(event: any) => {
-          const newData = [...props.data];
-          newData[props.id] = { item: event.target.value, time: props.data[props.id].time };
-          props.setData(newData);
-        }}
-        className="w-40 bg-red-200 shadow-inner rounded p-2 m-1 "
-        placeholder="項目を入れる"
-      />
-      <input
-        onChange={(event: any) => {
-          const newData = [...props.data];
-          newData[props.id] = { item: props.data[props.id].item, time: Number(event.target.value) };
-          props.setData(newData);
-        }}
-        className="w-10 bg-blue-200 shadow-inner rounded p-2 m-1 "
-      />
-      <div className="flex items-center">
-        <p className="text-xl">H</p>
-      </div>
-    </div>
-  );
+type timeTable = {
+  item: string;
+  time: number;
+  color: string;
 };
 
-const Viewdata = (props: any) => {
-  return (
-    <div className="flex bg-gray-900 px-4">
-      <div className="w-1/2 p-1 text-white">項目: {props.data1}</div>
-      <div className="w-1/2 p-1 text-white">時間: {props.data2}</div>
-    </div>
-  );
-};
-
-const App = () => {
-  const [data, setData] = useState([
-    // { item: "", time: "" },
-    // { item: "", time: "" },
-    // { item: "", time: "" },
-    // { item: "", time: "" },
-    { item: "REACT", time: 7 },
-    { item: "ブログ書く", time: 4 },
-    { item: "その他", time: 7 },
-    { item: "睡眠", time: 8 },
+const Home = () => {
+  const [timeTable, setTimeTable] = useState<timeTable[]>([
+    { item: "REACT", time: 7, color: "bg-blue-600" },
+    { item: "ブログ書く", time: 4, color: "bg-red-600" },
+    { item: "その他", time: 7, color: "bg-green-600" },
+    { item: "睡眠", time: 8, color: "bg-yellow-600" },
   ]);
 
   const screenshot = () => {
@@ -64,7 +26,6 @@ const App = () => {
       return;
     }
     html2canvas(target).then((canvas) => {
-      // document.body.appendChild(canvas);
       const imgData = canvas.toDataURL("image/png");
       const result = document.getElementById("result");
       if (!result) {
@@ -72,7 +33,6 @@ const App = () => {
         return;
       }
       result.setAttribute("src", imgData);
-      // console.log("done");
     });
   };
 
@@ -83,16 +43,8 @@ const App = () => {
       return;
     }
     html2canvas(target).then((canvas) => {
-      // document.body.appendChild(canvas);
       const imgData = canvas.toDataURL("image/png");
-      // const result = document.getElementById("result");
-      // if (!result) {
-      //   alert("nothing");
-      //   return;
-      // }
-      // result.src = imgData;
       uploadFile(imgData);
-      // console.log("done");
     });
   };
 
@@ -165,62 +117,76 @@ const App = () => {
   };
 
   return (
-    <div>
-      <button className="p-2 bg-red-300" onClick={screenshot}>
-        Screenshot
-      </button>
-      <button className="p-2 bg-blue-300" onClick={screenshot2}>
-        Screenshot2
-      </button>
-      <div className="w-80 shadow-md m-auto my-10 ">
-        <h1 className="bg-red-400 text-white text-2xl text-center p-3">コレスル</h1>
-        <div id="capture">
-          <PieChart timeTables={data} />
-        </div>
-        <Viewdata data1={data[0].item} data2={data[0].time} />
-        <Viewdata data1={data[1].item} data2={data[1].time} />
-        <Viewdata data1={data[2].item} data2={data[2].time} />
-        <Viewdata data1={data[3].item} data2={data[3].time} />
-
-        <div className="p-3 bg-gray-200">
-          <InputField id="0" data={data} setData={setData} color="bg-blue-600" />
-          <InputField id="1" data={data} setData={setData} color="bg-red-600" />
-          <InputField id="2" data={data} setData={setData} color="bg-yellow-600" />
-          <InputField id="3" data={data} setData={setData} color="bg-green-600" />
-        </div>
-
-        {/* <div id="share"></div> */}
-
-        <a
-          className="p-2 bg-green-200 inline-block"
-          id="share"
-          href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw"
-        >
-          Share
-        </a>
-      </div>
-
-      <div className="w-80 m-auto">
-        <p>Result image</p>
-        <div id="gallery" />
-        <img alt="outimage" id="result" src="" width="300px" height="300px" />
-      </div>
-    </div>
-  );
-};
-
-const Home = () => {
-  return (
     <Layout>
-      {/* <button
-        className="btn-blue"
-        onClick={() => {
-          window.alert("Hello, World!");
-        }}
-      >
-        Button
-      </button> */}
-      <App />
+      <div>
+        <Button className="p-2 bg-red-300" onClick={screenshot}>
+          Screenshot
+        </Button>
+        <Button className="p-2 bg-blue-300" onClick={screenshot2}>
+          Screenshot2
+        </Button>
+        <div className="w-80 shadow-md m-auto my-10 ">
+          <h1 className="bg-red-400 text-white text-2xl text-center p-3">コレスル</h1>
+          <div id="capture">
+            <PieChart timeTables={timeTable} />
+          </div>
+
+          {timeTable.map((obj, idx) => {
+            return (
+              <div key={idx} className="flex bg-gray-900 px-4">
+                <div className="w-1/2 p-1 text-white">項目: {obj.item}</div>
+                <div className="w-1/2 p-1 text-white">時間: {obj.time}</div>
+              </div>
+            );
+          })}
+
+          <div className="p-3 bg-gray-200">
+            {timeTable.map((obj, idx) => {
+              return (
+                <div key={idx} className="flex justify-center w-72 m-auto">
+                  <span className={`w-12 h-12 text-white shadow p-2 rounded m-1 inline-block ${obj.color}`}></span>
+                  <Input
+                    onChange={(event: any) => {
+                      const newData = [...timeTable];
+                      newData[idx].item = event.target.value;
+                      setTimeTable(newData);
+                    }}
+                    value={obj.item}
+                    className="w-40 bg-red-200 shadow-inner rounded p-2 m-1 "
+                    placeholder="項目を入れる"
+                  />
+                  <Input
+                    value={obj.time}
+                    onChange={(event: any) => {
+                      const newData = [...timeTable];
+                      newData[idx].time = Number(event.target.value);
+                      setTimeTable(newData);
+                    }}
+                    className="w-10 bg-blue-200 shadow-inner rounded p-2 m-1 "
+                  />
+                  <div className="flex items-center">
+                    <p className="text-xl">H</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <a
+            className="p-2 bg-green-200 inline-block"
+            id="share"
+            href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw"
+          >
+            Share
+          </a>
+        </div>
+
+        <div className="w-80 m-auto">
+          <p>Result image</p>
+          <div id="gallery" />
+          <img alt="outimage" id="result" src="" width="300px" height="300px" />
+        </div>
+      </div>
     </Layout>
   );
 };
