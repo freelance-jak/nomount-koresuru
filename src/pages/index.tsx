@@ -6,7 +6,7 @@ import { Layout } from "src/components/layout";
 import { PieChart } from "src/components/piechart";
 
 type timeTable = {
-  item?: string;
+  item?: string | number;
   time?: number;
   color?: string;
 };
