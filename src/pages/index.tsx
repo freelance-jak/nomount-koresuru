@@ -1,5 +1,5 @@
 import html2canvas from "html2canvas";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Input } from "src/components/Input";
 import { Button } from "src/components/Button";
 import { Layout } from "src/components/layout";
@@ -18,6 +18,18 @@ const Home = () => {
     { item: "その他", time: 7, color: "bg-green-600" },
     { item: "睡眠", time: 8, color: "bg-yellow-600" },
   ]);
+
+  const onChangeItem = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
+    const newData = [...timeTable];
+    newData[idx].item = e.target.value;
+    setTimeTable(newData);
+  };
+
+  const onChangeTime = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
+    const newData = [...timeTable];
+    newData[idx].time = Number(e.target.value);
+    setTimeTable(newData);
+  };
 
   const screenshot = () => {
     const target = document.getElementById("capture");
@@ -146,10 +158,8 @@ const Home = () => {
                 <div key={idx} className="flex justify-center w-72 m-auto">
                   <span className={`w-12 h-12 text-white shadow p-2 rounded m-1 inline-block ${obj.color}`}></span>
                   <Input
-                    onChange={(event: any) => {
-                      const newData = [...timeTable];
-                      newData[idx].item = event.target.value;
-                      setTimeTable(newData);
+                    onChange={(e) => {
+                      onChangeItem(e, idx);
                     }}
                     value={obj.item}
                     className="w-40 bg-red-200 shadow-inner rounded p-2 m-1 "
@@ -157,10 +167,8 @@ const Home = () => {
                   />
                   <Input
                     value={obj.time}
-                    onChange={(event: any) => {
-                      const newData = [...timeTable];
-                      newData[idx].time = Number(event.target.value);
-                      setTimeTable(newData);
+                    onChange={(e) => {
+                      onChangeTime(e, idx);
                     }}
                     className="w-10 bg-blue-200 shadow-inner rounded p-2 m-1 "
                   />
