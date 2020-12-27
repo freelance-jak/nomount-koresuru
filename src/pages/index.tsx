@@ -6,9 +6,9 @@ import { Layout } from "src/components/layout";
 import { PieChart } from "src/components/piechart";
 
 type timeTable = {
-  item?: string | number;
-  time?: number;
-  color?: string;
+  item: string;
+  time: number;
+  color: string;
 };
 
 const Home = () => {
@@ -166,7 +166,7 @@ const Home = () => {
                     placeholder="項目を入れる"
                   />
                   <Input
-                    value={obj.time}
+                    value={obj.time.toString()}
                     onChange={(e) => {
                       onChangeTime(e, idx);
                     }}
