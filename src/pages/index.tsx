@@ -35,14 +35,23 @@ const Home = () => {
 
   const onClickShare = async () => {
     if (element === null) {
-      alert(); //TODO
+      alert(); // TODO
       return;
     }
 
+    // TODO:ローディングアイコン表示
+
     const canvas = await toCanvas(element);
     const blob = await toBlob(canvas);
-    // const file = toFile(blob);
-    await upload(blob);
+    const { imageId, error } = await upload(blob);
+
+    if (error) {
+      // TODO: error handling
+      alert("error");
+      return;
+    }
+
+    alert(`アップロード成功：image id is ${imageId}`);
   };
 
   return (
