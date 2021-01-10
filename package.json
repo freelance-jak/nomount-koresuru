@@ -35,7 +35,6 @@
     "printWidth": 120
   },
   "dependencies": {
-    "axios": "^0.21.1",
     "cloudinary-react": "^1.6.8",
     "html2canvas": "^1.0.0-rc.7",
     "next": "10.0.3",
