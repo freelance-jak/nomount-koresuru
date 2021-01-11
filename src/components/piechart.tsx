@@ -1,14 +1,27 @@
+import type { Dispatch, SetStateAction } from "react";
 import { Cell, Pie, PieChart as RechartPieChart, Surface, Symbols } from "recharts";
 
-export const PieChart = (props: any) => {
-  const timeTables: { item: string; time: number }[] = props.timeTables;
+import { TimeTable } from "src/types/types";
+
+type Props = {
+  timeTables: TimeTable[];
+  setElement: Dispatch<SetStateAction<HTMLDivElement | null>>;
+};
+
+export const PieChart = (props: Props) => {
+  const { timeTables, setElement } = props;
   {
     /* TODO: 分割したい */
   }
   const COLORS = ["#DA7671", "#4267B2", "#77B255", "#9E9E9E"];
 
   return (
-    <div className="flex items-center">
+    <div
+      ref={(element) => {
+        return setElement(element);
+      }}
+      className="flex items-center"
+    >
       <RechartPieChart width={200} height={200}>
         <Pie
           data={timeTables}

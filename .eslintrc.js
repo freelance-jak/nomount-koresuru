@@ -27,7 +27,7 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "import/newline-after-import": "error",
-    "import/no-default-export": "error",
+    "import/no-default-export": "off",
     "simple-import-sort/imports": "off",
     "simple-import-sort/exports": "error",
     "@typescript-eslint/no-explicit-any": 0,
