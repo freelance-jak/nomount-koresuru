@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from "react";
 import { Input } from "src/components/Input";
 import { Button } from "src/components/Button";
 import { Layout } from "src/components/layout";
-import { PieChart } from "src/components/Piechart";
+import { PieChart } from "src/components/piechart";
 
 import { useFile } from "src/hooks/useFile";
 import { TimeTable } from "src/types/types";
@@ -19,6 +19,7 @@ const initialValue: TimeTable[] = [
 const Home = () => {
   const [element, setElement] = useState<HTMLDivElement | null>(null);
   const [timeTable, setTimeTable] = useState<TimeTable[]>(initialValue);
+  const [link, setLink] = useState("https://www.google.co.jp");
   const { upload } = useFile();
 
   const onChangeItem = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
@@ -43,7 +44,9 @@ const Home = () => {
 
     const canvas = await toCanvas(element);
     const blob = await toBlob(canvas);
-    const { imageId, error } = await upload(blob);
+    const { imageId, error, imageURL } = await upload(blob);
+
+    setLink(imageURL);
 
     if (error) {
       // TODO: error handling
@@ -51,15 +54,24 @@ const Home = () => {
       return;
     }
 
-    alert(`アップロード成功：image id is ${imageId}`);
+    alert(`アップロード成功：image id is ${imageId} with link \n ${imageURL}`);
   };
 
   return (
     <Layout>
       <div>
         <div className="w-80 shadow-md m-auto my-10 ">
-          <h1 className="bg-red-400 text-white text-2xl text-center p-3">コレスル</h1>
-          <PieChart timeTables={timeTable} setElement={setElement} />
+          <div
+            ref={(element) => {
+              return setElement(element);
+            }}
+          >
+            <h1 className="bg-red-400 text-white text-2xl text-center p-3">コレスル</h1>
+            {/* <PieChart timeTables={timeTable} setElement={setElement} /> */}
+            <div className="bg-gray-200">
+              <PieChart timeTables={timeTable} />
+            </div>
+          </div>
 
           {timeTable.map((obj, idx) => {
             return (
@@ -98,6 +110,7 @@ const Home = () => {
             })}
           </div>
           <Button onClick={onClickShare}>シェア</Button>
+          <a href={link}>Image Link</a>
         </div>
       </div>
     </Layout>

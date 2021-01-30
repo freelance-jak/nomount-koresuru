@@ -1,15 +1,17 @@
-import type { Dispatch, SetStateAction } from "react";
+// import type { Dispatch, SetStateAction } from "react";
 import { Cell, Pie, PieChart as RechartPieChart, Surface, Symbols } from "recharts";
 
 import { TimeTable } from "src/types/types";
 
 type Props = {
   timeTables: TimeTable[];
-  setElement: Dispatch<SetStateAction<HTMLDivElement | null>>;
+  // setElement: Dispatch<SetStateAction<HTMLDivElement | null>>;
 };
 
 export const PieChart = (props: Props) => {
-  const { timeTables, setElement } = props;
+  // const { timeTables, setElement } = props;
+  const { timeTables } = props;
+
   {
     /* TODO: 分割したい */
   }
@@ -17,9 +19,9 @@ export const PieChart = (props: Props) => {
 
   return (
     <div
-      ref={(element) => {
-        return setElement(element);
-      }}
+      // ref={(element) => {
+      //   return setElement(element);
+      // }}
       className="flex items-center"
     >
       <RechartPieChart width={200} height={200}>
