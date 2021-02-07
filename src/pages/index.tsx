@@ -58,10 +58,6 @@ const Home = () => {
     <Layout>
       <div>
         <div className="w-80 shadow-md m-auto my-10 ">
-<<<<<<< HEAD
-          <h1 className="bg-red-400 text-white text-2xl text-center p-3">コレスル</h1>
-          <PieChart timeTables={timeTable} setElement={setElement} />
-=======
           <div
             ref={(element) => {
               return setElement(element);
@@ -73,7 +69,6 @@ const Home = () => {
               <PieChart timeTables={timeTable} />
             </div>
           </div>
->>>>>>> c54f282... align color
 
           {/* {timeTable.map((obj, idx) => {
             return (
