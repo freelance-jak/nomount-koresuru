@@ -17,6 +17,8 @@ export const PieChart = (props: Props) => {
   }
   const COLORS = ["#DA7671", "#4267B2", "#77B255", "#9E9E9E"];
 
+  const chartSize = 150;
+
   return (
     <div
       // ref={(element) => {
@@ -24,16 +26,16 @@ export const PieChart = (props: Props) => {
       // }}
       className="flex items-center"
     >
-      <RechartPieChart width={200} height={200}>
+      <RechartPieChart width={chartSize} height={chartSize}>
         <Pie
           data={timeTables}
           dataKey="time"
-          cx={100}
-          cy={100}
+          cx={chartSize / 2}
+          cy={chartSize / 2}
           startAngle={90}
           endAngle={-270}
-          innerRadius={60}
-          outerRadius={80}
+          innerRadius={chartSize * 0.3}
+          outerRadius={chartSize * 0.4}
           fill="#8884d8"
         >
           {timeTables.map((entry, index) => {
@@ -42,24 +44,26 @@ export const PieChart = (props: Props) => {
         </Pie>
       </RechartPieChart>
       {/* TODO: 分割したい */}
-      <span className="legend-item">
+      <div className="legend-item w-64">
         {timeTables.map((entry, index) => {
           return (
             <>
-              <div className="flex">
-                {/* TODO: 分割したい */}
-                <Surface className="mr-2" width={20} height={20}>
-                  <Symbols className="ml-4" cx={13} cy={13} type="circle" size={100} fill={COLORS[index]} />
-                </Surface>
-                <span>{entry.item}</span>
-                <div className="flex items-end">
-                  <span className="align-bottom ml-2 text-xs text-gray-500	">{entry.time}H</span>
+              <div className="flex-wrap">
+                <div className="flex items-baseline">
+                  {/* TODO: 分割したい */}
+                  <Surface className="mr-2" width={20} height={20}>
+                    <Symbols cx={14} cy={14} type="circle" size={100} fill={COLORS[index]} />
+                  </Surface>
+                  <div className="w-24 truncate">{entry.item}</div>
+                  <div className="flex items-center">
+                    <span className="w-8 text-right align-bottom text-xs text-gray-500	">{entry.time}H</span>
+                  </div>
                 </div>
               </div>
             </>
           );
         })}
-      </span>
+      </div>
     </div>
   );
 };

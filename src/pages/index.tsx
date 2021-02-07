@@ -66,9 +66,9 @@ const Home = () => {
               return setElement(element);
             }}
           >
-            <h1 className="bg-red-400 text-white text-2xl text-center p-3">コレスル</h1>
+            <h1 className="bg-red-400 text-white text-2xl text-center p-2">コレスル</h1>
             {/* <PieChart timeTables={timeTable} setElement={setElement} /> */}
-            <div className="bg-gray-200">
+            <div className="bg-gray-200 pb-2">
               <PieChart timeTables={timeTable} />
             </div>
           </div>
