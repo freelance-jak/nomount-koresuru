@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from "react";
 import { Input } from "src/components/Input";
 import { Button } from "src/components/Button";
 import { Layout } from "src/components/layout";
-import { PieChart } from "src/components/Piechart";
+import { PieChart } from "src/components/piechart";
 
 import { useFile } from "src/hooks/useFile";
 import { TimeTable } from "src/types/types";
