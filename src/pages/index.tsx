@@ -57,7 +57,7 @@ const Home = () => {
   return (
     <Layout>
       <div>
-        <div className="w-80 shadow-md m-auto my-10 ">
+        <div className="w-80 shadow-md m-auto">
           <div
             ref={(element) => {
               return setElement(element);
@@ -106,7 +106,11 @@ const Home = () => {
               );
             })}
           </div>
-          <Button onClick={onClickShare}>シェア</Button>
+          <div className="pb-5 px-5 text-center">
+            <Button className="w-full rounded p-3 bg-blue-700 text-white" onClick={onClickShare}>
+              シェア
+            </Button>
+          </div>
         </div>
       </div>
     </Layout>
