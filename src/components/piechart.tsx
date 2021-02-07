@@ -13,7 +13,7 @@ export const PieChart = (props: Props) => {
   {
     /* TODO: 分割したい */
   }
-  const COLORS = ["#DA7671", "#4267B2", "#77B255", "#9E9E9E"];
+  const COLORS = ["#EF4444", "#3B82F6", "#F59E0B", "#10B981"];
 
   const chartSize = 150;
 
@@ -34,7 +34,7 @@ export const PieChart = (props: Props) => {
           endAngle={-270}
           innerRadius={chartSize * 0.3}
           outerRadius={chartSize * 0.4}
-          fill="#8884d8"
+          // fill="#E5E7EB"
         >
           {timeTables.map((entry, index) => {
             return <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />;
