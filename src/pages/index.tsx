@@ -19,7 +19,7 @@ const initialValue: TimeTable[] = [
 const Home = () => {
   const [element, setElement] = useState<HTMLDivElement | null>(null);
   const [timeTable, setTimeTable] = useState<TimeTable[]>(initialValue);
-  const [link, setLink] = useState("https://www.google.co.jp");
+  // const [link, setLink] = useState("https://www.google.co.jp");
   const { upload } = useFile();
 
   const onChangeItem = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
@@ -46,7 +46,7 @@ const Home = () => {
     const blob = await toBlob(canvas);
     const { imageId, error, imageURL } = await upload(blob);
 
-    setLink(imageURL);
+    // setLink(imageURL);
 
     if (error) {
       // TODO: error handling
@@ -60,7 +60,7 @@ const Home = () => {
   return (
     <Layout>
       <div>
-        <div className="w-80 shadow-md m-auto my-10 ">
+        <div className="w-80 shadow-md m-auto">
           <div
             ref={(element) => {
               return setElement(element);
@@ -109,8 +109,11 @@ const Home = () => {
               );
             })}
           </div>
-          <Button onClick={onClickShare}>シェア</Button>
-          <a href={link}>Image Link</a>
+          <div className="pb-5 px-5 text-center">
+            <Button className="w-full rounded p-3 bg-blue-700 text-white" onClick={onClickShare}>
+              シェア
+            </Button>
+          </div>
         </div>
       </div>
     </Layout>

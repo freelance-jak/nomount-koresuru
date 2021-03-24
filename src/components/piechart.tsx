@@ -5,13 +5,10 @@ import { TimeTable } from "src/types/types";
 
 type Props = {
   timeTables: TimeTable[];
-  // setElement: Dispatch<SetStateAction<HTMLDivElement | null>>;
 };
 
 export const PieChart = (props: Props) => {
-  // const { timeTables, setElement } = props;
   const { timeTables } = props;
-
   {
     /* TODO: 分割したい */
   }
@@ -20,12 +17,7 @@ export const PieChart = (props: Props) => {
   const chartSize = 150;
 
   return (
-    <div
-      // ref={(element) => {
-      //   return setElement(element);
-      // }}
-      className="flex items-center"
-    >
+    <div className="flex items-center">
       <RechartPieChart width={chartSize} height={chartSize}>
         <Pie
           data={timeTables}

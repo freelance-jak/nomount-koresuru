@@ -1,15 +1,15 @@
 import Link from "next/link";
 
 const items = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "/", label: "コレスル" },
+  { href: "/about", label: "利用説明" },
 ];
 
 export const Header = () => {
   return (
-    <header>
-      <h1>Title</h1>
-      <nav>
+    <header className="bg-gray-200">
+      {/* <h1>Title</h1> */}
+      <nav className="w-80 m-auto">
         {items.map(({ href, label }) => {
           return (
             <Link key={href} href={href}>
