@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "cloudinary-react": "^1.6.8",
+    "firebase": "^8.2.2",
     "html2canvas": "^1.0.0-rc.7",
     "next": "10.0.3",
     "react": "17.0.1",

@@ -19,6 +19,7 @@ const initialValue: TimeTable[] = [
 const Home = () => {
   const [element, setElement] = useState<HTMLDivElement | null>(null);
   const [timeTable, setTimeTable] = useState<TimeTable[]>(initialValue);
+  // const [link, setLink] = useState("https://www.google.co.jp");
   const { upload } = useFile();
 
   const onChangeItem = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
@@ -43,7 +44,9 @@ const Home = () => {
 
     const canvas = await toCanvas(element);
     const blob = await toBlob(canvas);
-    const { imageId, error } = await upload(blob);
+    const { imageId, error, imageURL } = await upload(blob);
+
+    // setLink(imageURL);
 
     if (error) {
       // TODO: error handling
@@ -51,7 +54,7 @@ const Home = () => {
       return;
     }
 
-    alert(`アップロード成功：image id is ${imageId}`);
+    alert(`アップロード成功：image id is ${imageId} with link \n ${imageURL}`);
   };
 
   return (
